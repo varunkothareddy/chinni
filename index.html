@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For Chinni 🤍</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: #ffe6f0;
+    }
+
+    /* ---------- CARTOON BACKGROUND ---------- */
+    .bg-pattern {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .bg-pattern span {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 20px;
+      opacity: 0.65;
+      animation: float 8s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    .bg-pattern span:nth-child(1)  { background-image: url("https://i.pinimg.com/736x/bc/f1/ef/bcf1ef311d3e2e2ec4a20fae487b2d91.jpg"); top: 5%; left: 5%; } 
+    .bg-pattern span:nth-child(2)  { background-image: url("https://i.pinimg.com/736x/a8/63/f9/a863f9f7ca73d907fd8aa16decc88e14.jpg"); top: 8%; left: 35%; }
+    .bg-pattern span:nth-child(3)  { background-image: url("https://i.pinimg.com/736x/80/5f/f8/805ff812851582927ebe08875c93e821.jpg"); top: 10%; left: 65%; }
+    .bg-pattern span:nth-child(4)  { background-image: url("https://i.pinimg.com/736x/6e/60/c9/6e60c9bbe3964fc5cf20da8a97cf0136.jpg"); top: 20%; left: 85%; }
+
+    .bg-pattern span:nth-child(5)  { background-image: url("https://i.pinimg.com/736x/a8/63/f9/a863f9f7ca73d907fd8aa16decc88e14.jpg"); top: 40%; left: 10%; }
+    .bg-pattern span:nth-child(7)  { background-image: url("https://i.pinimg.com/736x/6e/60/c9/6e60c9bbe3964fc5cf20da8a97cf0136.jpg"); top: 50%; left: 70%; }
+
+    .bg-pattern span:nth-child(8)  { background-image: url("https://i.pinimg.com/736x/bc/f1/ef/bcf1ef311d3e2e2ec4a20fae487b2d91.jpg"); top: 70%; left: 15%; }
+    .bg-pattern span:nth-child(9)  { background-image: url("https://i.pinimg.com/736x/80/5f/f8/805ff812851582927ebe08875c93e821.jpg"); top: 75%; left: 45%; }
+    .bg-pattern span:nth-child(10) { background-image: url("https://i.pinimg.com/736x/a8/63/f9/a863f9f7ca73d907fd8aa16decc88e14.jpg"); top: 80%; left: 75%; }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,0.6);
+      z-index: 0;
+    }
+
+    /* ---------- MAIN CONTENT ---------- */
+    .first-page,
+    .surprise-container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .first-page {
+      text-align: center;
+    }
+
+    h1 {
+      color: #ff4d88;
+      font-size: 38px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 12px 28px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      background: #ff4d88;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    .surprise-container {
+      display: none;
+      position: absolute;
+    }
+
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 25px;
+      width: 320px;
+      text-align: center;
+      animation: pop 0.6s ease;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+
+    .teddy {
+      font-size: 85px;
+      cursor: pointer;
+      animation: bounce 1.5s infinite;
+    }
+
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .tap-text {
+      color: #ff4d88;
+      font-size: 16px;
+    }
+
+    .message {
+      display: none;
+      font-size: 17px;
+      color: #444;
+      line-height: 1.6;
+      text-align: left;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- BACKGROUND -->
+  <div class="bg-pattern">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span>
+  </div>
+  <div class="overlay"></div>
+
+  <!-- FIRST PAGE -->
+  <div class="first-page" id="firstPage">
+    <h1>Hyy Cutie 😻</h1>
+    <button onclick="showAlert()">Tap here 💫</button>
+  </div>
+
+  <!-- SURPRISE -->
+  <div class="surprise-container" id="surprise">
+    <div class="box">
+      <div class="teddy" onclick="openMessage()">🧸</div>
+      <p class="tap-text" id="tapText">Hyy Chinni, tap me 😌</p>
+
+      <div class="message" id="message"></div>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script>
+    const finalMessage =
+`Dear Cutie Chinni 🤍
+
+To be frank present naa life lo unna only girl nuvve 🫵. That is why I don't wanna loose you and give you all my efforts ✨.
+
+Expecting nothing much from you just than your frndship and happiness 👀. 
+
+Just wanna make you remember that you are not alone beacuse here a pichodu named chinnodu is there for you 🫶.
+
+Leave all the prev as passing clouds 💭 and let's make this bond stay strong as sky 🩵.
+
+Never ever forget your place in my life.......🩵🤍...
+
+– Your Chinnodu 🫂
+
+Manifesting to dhigify all the pics like here with you 🌝`;
+
+    let index = 0;
+
+    function showAlert() {
+      alert("A surprise from Chinnodu is waiting for you 🤍");
+      document.getElementById("firstPage").style.display = "none";
+      document.getElementById("surprise").style.display = "block";
+    }
+
+    function openMessage() {
+      document.querySelector(".teddy").style.display = "none";
+      document.getElementById("tapText").style.display = "none";
+      document.getElementById("message").style.display = "block";
+      typeEffect();
+    }
+
+    function typeEffect() {
+      if (index < finalMessage.length) {
+        document.getElementById("message").textContent += finalMessage.charAt(index);
+        index++;
+        setTimeout(typeEffect, 40); // typing speed
+      }
+    }
+  </script>
+
+</body>
+</html>

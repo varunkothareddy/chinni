@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Swipe Feelings</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#000;
+      height:100vh;
+      overflow:hidden;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      color:#fff;
+    }
+
+    .screen{
+      width:100%;
+      max-width:420px;
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      position:relative;
+      cursor:pointer;
+    }
+
+    /* 🧸🐼 AVATAR */
+    .avatar{
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      background:#ccc;
+      margin-bottom:25px;
+      background-size:cover;
+      background-position:center;
+
+      /* subtle float animation */
+      animation: float 2.5s ease-in-out infinite;
+    }
+
+  @keyframes float{
+  0%{
+    transform: translateY(0);
+  }
+  50%{
+    transform: translateY(-19px); /* ≈ 0.5 cm */
+  }
+  100%{
+    transform: translateY(0);
+  }
+}
+
+
+    .text{
+      font-size:20px;
+      line-height:1.6;
+      opacity:0;
+      transition:opacity 0.8s ease;
+      padding:0 20px;
+      min-height:110px;
+    }
+
+    .text.show{
+      opacity:1;
+    }
+
+    /* 🤍 NEXT BUTTON */
+    .next-btn{
+      margin-top:15px;
+      font-size:16px;
+      opacity:0.85;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      transition:transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .next-btn:hover{
+      opacity:1;
+      transform:scale(1.05);
+    }
+
+    .heart{
+      font-size:18px;
+      animation:pulse 1.8s infinite;
+    }
+
+    @keyframes pulse{
+      0%{ transform:scale(1); }
+      50%{ transform:scale(1.15); }
+      100%{ transform:scale(1); }
+    }
+
+    
+  </style>
+</head>
+
+<body>
+
+<div class="screen" onclick="nextSlide()">
+  <div class="avatar" id="avatar"></div>
+  <div class="text" id="text"></div>
+
+  <div class="next-btn" id="nextBtn">
+    <span class="heart">🤍</span> Next→
+  </div>
+
+  
+</div>
+
+<script>
+const slides = [
+  {
+    img: "https://i.pinimg.com/736x/f3/36/d0/f336d0c1db53e4d0c717ce3cd8b3c829.jpg",
+    text: "Heyy 😊<br>Just oka cute hi from me 🐼"
+  },
+  {
+    img: "https://i.pinimg.com/1200x/11/87/64/118764cbcca2f727391fb8fd2da623f1.jpg",
+    text: "Food thinnaava? 🧸<br>Water kuda drink cheyyi…<br>important person kadha 😉"
+  },
+  {
+    img: "https://i.pinimg.com/736x/d4/fe/34/d4fe34cebc11a99060afe32e18fefae8.jpg",
+    text: "Hope today lo okka moment aina<br>nuvvu ila smile ayyi untav ✨"
+  },
+  {
+    img: "https://i.pinimg.com/736x/85/a7/00/85a700ff874a54dab19e263383fde832.jpg",
+    text: "Edhaina heavy gaa anipisthe,<br>cheppachu…<br>Chinnodu is here 🩵"
+  },
+  {
+    img: "https://i.pinimg.com/736x/4b/86/9b/4b869b5bc80b8335d308a6df1633aeee.jpg",
+    text: "Oka doubt 🤭<br>Nuvvu ila andham gaa undadam practice aa,<br>leka natural talent aa?"
+  },
+  {
+    img: "https://i.pinimg.com/736x/34/75/6b/34756b636ea20882c5ebea7020e2449d.jpg",
+    text: "Andharitho ilaa undanu…<br>kaani neetho matladetappudu<br>automatic gaa alaa undipovaali anipisthadhi 🤍"
+  },
+  {
+    img: "https://i.pinimg.com/736x/e2/76/80/e276806ed356f1c839825f5332e760a0.jpg",
+    text: "Serious question 😌<br>Nuvvu reply late isthe,<br>naa phone enduku dull gaa anipisthundhi?"
+  },
+  {
+    img: "https://i.pinimg.com/1200x/2f/6c/f7/2f6cf723b9e6e82cc259fd3380d75c72.jpg",
+    text: "Ee bond ki name pettalenu.......<br>kaani idhi normal kaadhu ani<br>naaku clear gaa telusu 🧸"
+  },
+  {
+    img: "https://i.pinimg.com/736x/d1/69/42/d16942be0472da4e42215eb95a48f1ce.jpg",
+    text: "Just one last thing 🤍<br>Nuvvu naa life lo<br>most important person aipoyav…<br>adhi cheppalani anipinchindhi."
+  }
+];
+
+let i = 0;
+const avatar = document.getElementById('avatar');
+const textEl = document.getElementById('text');
+const nextBtn = document.getElementById('nextBtn');
+
+function show(){
+  textEl.classList.remove('show');
+  setTimeout(()=>{
+    avatar.style.backgroundImage = `url(${slides[i].img})`;
+    textEl.innerHTML = slides[i].text;
+    textEl.classList.add('show');
+  },300);
+}
+
+function nextSlide(){
+  if(i < slides.length - 1){
+    i++;
+    show();
+  }else{
+    nextBtn.innerHTML = "<span class='heart'>🤍</span> That’s all";
+  }
+}
+
+show();
+</script>
+
+</body>
+</html>
